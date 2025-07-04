@@ -23,12 +23,12 @@ export const Home = () => {
       <Navbar />
       {/* Main Content */}
       <main>
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <AchievementsSection />
-        <ProjectsSection />
-        <ContactSection />
+        <div id="hero"> <HeroSection /></div>
+        <div id="about"> <AboutSection /></div>
+        <div id="skills"> <SkillsSection /></div>
+        <div id="achievements"> <AchievementsSection /></div>
+        <div id="projects"> <ProjectsSection /></div>
+        <div id="contact"> <ContactSection /></div>
       </main>
 
       {/* Footer */}
