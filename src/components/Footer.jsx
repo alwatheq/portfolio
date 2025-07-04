@@ -1,6 +1,12 @@
 import { ArrowUp } from "lucide-react";
 
 export const Footer = () => {
+   const handleScrollToTop = () => {
+    const element = document.getElementById('hero');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
     <footer className="py-12 px-4 bg-card relative border-t border-border mt-12 pt-8 flex flex-wrap justify-between items-center">
       {" "}
@@ -8,12 +14,12 @@ export const Footer = () => {
         {" "}
         &copy; {new Date().getFullYear()} Abdulrahman Alharbi.co. All rights reserved.
       </p>
-      <a
-        href="#hero"
+      <button
+        onClick={handleScrollToTop}
         className="p-2 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
       >
         <ArrowUp size={20} />
-      </a>
+      </button>
     </footer>
   );
 };

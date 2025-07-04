@@ -1,6 +1,14 @@
 import { Briefcase, Code, User } from "lucide-react";
 
 export const AboutSection = () => {
+
+   const handleScrollToContact = () => {
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="about" className="py-24 px-4 relative">
       {" "}
@@ -26,10 +34,9 @@ export const AboutSection = () => {
           
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button">
-                {" "}
+              <button onClick={handleScrollToContact} className="cosmic-button">
                 Get In Touch
-              </a>
+              </button>
 
               <a
                 href="https://cdsfxwpyevlgkusxzexq.supabase.co/storage/v1/object/public/project-images/4ec64e30-84c3-43fd-8d3f-4b070eca1f68/full_cv.pdf"
