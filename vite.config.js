@@ -6,6 +6,7 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  base: '/portfolio/', // Make sure this matches your repo name exactly
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
