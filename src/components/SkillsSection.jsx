@@ -3,38 +3,34 @@ import { cn } from "@/lib/utils";
 
 const skills = [
   // Mobile Development
-  { name: "Flutter", level: 95, category: "mobile" },
-  { name: "Dart", level: 95, category: "mobile" },
-  { name: "Firebase", level: 85, category: "mobile" },
-  { name: "React Native", level: 70, category: "mobile" },
-  { name: "Android Development", level: 80, category: "mobile" },
-  { name: "iOS Development", level: 80, category: "mobile" },
+  { name: "Flutter", category: "mobile" },
+  { name: "Dart", category: "mobile" },
+  { name: "Clean Architecture", category: "mobile" },
+  
 
   // IoT & Embedded
-  { name: "ESP32/Arduino", level: 90, category: "iot" },
-  { name: "C/C++", level: 85, category: "iot" },
-  { name: "Python", level: 85, category: "iot" },
-  { name: "ROS2", level: 80, category: "iot" },
-  { name: "MQTT Protocol", level: 85, category: "iot" },
-  { name: "Raspberry Pi", level: 85, category: "iot" },
-  { name: "Sensor Integration", level: 90, category: "iot" },
-  { name: "Computer Vision", level: 75, category: "iot" },
-  { name: "PID Control", level: 85, category: "iot" },
+  { name: "ESP32", category: "iot" },
+  { name: "C/C++", category: "iot" },
+  { name: "Python", category: "iot" },
+  { name: "ROS2", category: "iot" },
+  { name: "MQTT Protocol", category: "iot" },
+  { name: "Raspberry Pi", category: "iot" },
+  { name: "Sensor Integration", category: "iot" },
+  { name: "Computer Vision", category: "iot" },
+  { name: "PID Control", category: "iot" },
 
   // Backend (including web technologies)
-  { name: "Node.js", level: 80, category: "backend" },
-  { name: "Bun", level: 75, category: "backend" },
-  { name: "Next.js", level: 80, category: "backend" },
-  { name: "React", level: 85, category: "backend" },
-  { name: "TypeScript", level: 90, category: "backend" },
-  { name: "MongoDB", level: 75, category: "backend" },
-  { name: "Supabase", level: 80, category: "backend" },
+  { name: "Node.js", category: "backend" },
+  { name: "Bun", category: "backend" },
+  { name: "TypeScript", category: "backend" },
+  { name: "MongoDB", category: "backend" },
+  { name: "Supabase", category: "backend" },
 
   // Tools
-  { name: "Git/GitHub", level: 90, category: "tools" },
-  { name: "Docker", level: 75, category: "tools" },
-  { name: "VS Code", level: 95, category: "tools" },
-  { name: "Platform IO", level: 100, category: "tools" },
+  { name: "Git/GitHub", category: "tools" },
+  { name: "Docker", category: "tools" },
+  { name: "VS Code", category: "tools" },
+  { name: "Platform IO", category: "tools" },
 ];
 
 const categories = ["all", "mobile", "iot", "backend", "tools"];
@@ -69,27 +65,15 @@ export const SkillsSection = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
           {filteredSkills.map((skill, key) => (
             <div
               key={key}
-              className="bg-card p-6 rounded-lg shadow-xs card-hover"
+              className="bg-card p-4 rounded-lg shadow-xs card-hover flex items-center justify-center"
             >
-              <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg"> {skill.name}</h3>
-              </div>
-              <div className="w-full bg-secondary/50 h-2 rounded-full overflow-hidden">
-                <div
-                  className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                  style={{ width: skill.level + "%" }}
-                />
-              </div>
-
-              <div className="text-right mt-1">
-                <span className="text-sm text-muted-foreground">
-                  {skill.level}%
-                </span>
-              </div>
+              <h3 className="font-semibold text-center text-sm">
+                {skill.name}
+              </h3>
             </div>
           ))}
         </div>

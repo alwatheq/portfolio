@@ -43,6 +43,17 @@ export const Navbar = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isMenuOpen]);
+
   const toggleTheme = () => {
     if (isDarkMode) {
       document.documentElement.classList.remove("dark");
@@ -81,58 +92,26 @@ export const Navbar = () => {
   };
 
   return (
-    <nav
-      className={cn(
-        "fixed w-full z-40 transition-all duration-300",
-        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
-      )}
-    >
-      <div className="container flex items-center justify-between">
-        <button
-          className="text-xl font-bold text-primary flex items-center"
-          onClick={() => handleNavClick("hero")}
-        >
-          <span className="relative z-10">
-            <span className="text-glow text-foreground">Abdulrahman Alharbi</span>{" "}
-            Portfolio
-          </span>
-        </button>
-
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center space-x-8">
-          {navItems.map((item, key) => (
-            <button
-              key={key}
-              onClick={() => handleNavClick(item.href)}
-              className="text-foreground/80 hover:text-primary transition-colors duration-300"
-            >
-              {item.name}
-            </button>
-          ))}
-        </div>
-
-        {/* Mobile nav button */}
-        <div className="md:hidden flex items-center gap-2">
+    <>
+      <nav
+        className={cn(
+          "fixed w-full z-50 transition-all duration-300",
+          isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
+        )}
+      >
+        <div className="container flex items-center justify-between">
           <button
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="p-2 text-foreground z-50"
-            aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+            className="text-xl font-bold text-primary flex items-center"
+            onClick={() => handleNavClick("hero")}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <span className="relative z-10">
+              <span className="text-glow text-foreground">Abdulrahman Alharbi</span>{" "}
+              Portfolio
+            </span>
           </button>
-        </div>
 
-        {/* Mobile menu */}
-        <div
-          className={cn(
-            "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
-            "transition-all duration-300 md:hidden",
-            isMenuOpen
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
-          )}
-        >
-          <div className="flex flex-col space-y-8 text-xl">
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item, key) => (
               <button
                 key={key}
@@ -143,8 +122,51 @@ export const Navbar = () => {
               </button>
             ))}
           </div>
+
+          {/* Mobile nav button */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              className="p-2 text-foreground z-50 relative"
+              aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </nav>
+
+      {/* Mobile menu */}
+      <div
+        className={cn(
+          "fixed inset-0 bg-background/95 backdrop-blur-md z-[60] flex flex-col items-center justify-center",
+          "transition-all duration-300 md:hidden",
+          isMenuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        )}
+      >
+        {/* Close button inside the mobile menu */}
+        <button
+          onClick={() => setIsMenuOpen(false)}
+          className="absolute top-4 right-4 p-2 text-foreground z-[70]"
+          aria-label="Close Menu"
+        >
+          <X size={24} />
+        </button>
+
+        <div className="flex flex-col space-y-8 text-xl">
+          {navItems.map((item, key) => (
+            <button
+              key={key}
+              onClick={() => handleNavClick(item.href)}
+              className="text-foreground/80 hover:text-primary transition-colors duration-300"
+            >
+              {item.name}
+            </button>
+          ))}
         </div>
       </div>
-    </nav>
+    </>
   );
 };
